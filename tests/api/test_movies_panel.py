@@ -65,6 +65,7 @@ class TestApiMoves:
 
 
     def test_create_movie_without_administrator_rights(self, api_manager, test_movie_info):
+        api_manager.auth_api.logout()
         response = api_manager.movies_api.create_movie(test_movie_info, expected_status=401)
 
         assert response.status_code == 401
